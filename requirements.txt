@@ -1,0 +1,11 @@
+# The project and everything it needs to run.
+#
+# The dependency list itself lives in pyproject.toml, so there is one list
+# rather than two that have to be kept in step. Installing this way also puts
+# `fhew` on the path, which is what lets the stage scripts and the tests
+# import it without touching sys.path.
+#
+# torch pulls CUDA wheels by default. The pipeline only ever runs on CPU, and
+# the CPU wheel is a fraction of the size:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+-e .

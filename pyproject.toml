@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fhew"
+version = "1.0.0"
+description = "Family homelessness early warning: a reproducible analysis of English statutory homelessness data"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Mahdi Sabet Kish" }]
+# Upper bounds are deliberate on the three libraries whose behaviour the
+# pipeline depends on: pandas' ODF reader has changed between minor releases,
+# and both numpy 2 and a scikit-learn major would move estimator defaults.
+dependencies = [
+    "pandas>=2.1,<3.0",
+    "numpy>=1.26,<2.0",
+    "scikit-learn>=1.4,<2.0",
+    "matplotlib>=3.6,<4.0",
+    "odfpy>=1.4",        # reading the .ods statistical releases
+    "openpyxl>=3.1",     # reading the .xlsx deprivation summaries
+    "pyarrow>=14.0",     # parquet interchange between stages
+    "requests>=2.31",
+    # The Monte-Carlo dropout network. CPU wheels are enough and much smaller:
+    #   pip install torch --index-url https://download.pytorch.org/whl/cpu
+    "torch>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.4"]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["fhew*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::UserWarning"]
+
+# --- lint -------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+# Source URLs are copied verbatim from gov.uk so they can be checked against
+# the publication page; wrapping them would make that harder, not easier.
+"src/fhew/sources.py" = ["E501"]
+# Markdown table rows are emitted verbatim. Wrapping them in the source would
+# make the generated table harder to read, not easier.
+"src/fhew/profiling.py" = ["E501"]

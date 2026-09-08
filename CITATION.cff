@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: >-
+  Predicting rises in family homelessness from published local authority data
+message: If you refer to this work, please cite it as below.
+type: software
+authors:
+  - given-names: Mahdi
+    family-names: Sabet Kish
+    orcid: null
+abstract: >-
+  A prospective backtest of statistical and machine learning methods for
+  identifying English local authorities where homelessness among families with
+  dependent children is about to rise, together with a neighbourhood-level
+  segmentation and anomaly screen for Colchester. Built entirely on public
+  data released under the Open Government Licence.
+keywords:
+  - homelessness
+  - housing insecurity
+  - administrative data
+  - risk prediction
+  - model calibration
+  - public sector analytics
+license: MIT
+date-released: "2026-09-08"

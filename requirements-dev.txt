@@ -1,0 +1,2 @@
+# Everything in requirements.txt, plus the test and lint tools.
+-e .[dev]
