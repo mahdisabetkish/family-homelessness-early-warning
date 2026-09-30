@@ -17,7 +17,7 @@ learning earns its place and where it does not.
 
 The feature construction is in `fhew.features`, the models in `fhew.models`
 and the backtest in `fhew.evaluation`. This stage wires them together and
-writes the tables the slides and the dashboard read.
+writes the tables the dashboard reads.
 """
 from __future__ import annotations
 

@@ -94,8 +94,7 @@ identical once they are in a summary table.
 | 02 | `02_build_panel.py` | Select measures, reconcile boundary changes, convert counts to rates |
 | 03 | `03_colchester_lsoa.py` | Segment and anomaly-screen Colchester's neighbourhoods |
 | 04 | `04_model.py` | Prospective backtest of both tasks, with bootstrap intervals |
-| 05 | `05_figures.py` | Every figure in the slides and the README |
-| 06 | `06_facts.py` | Every number in the slides, written out as LaTeX macros |
+| 05 | `05_figures.py` | Every figure in the README and the dashboard |
 | 07 | `07_dashboard_data.py` | The JSON the dashboard reads |
 | 08 | `08_data_profile.py` | The dataset card, measured from the built artefacts |
 
@@ -169,7 +168,7 @@ git clone https://github.com/mahdisabetkish/family-homelessness-early-warning.gi
 cd family-homelessness-early-warning
 
 make setup     # virtualenv, dependencies, and the package itself
-make all       # download, build, model, figures, slides, dashboard
+make all       # download, build, model, figures, dashboard
 make serve     # preview the dashboard at http://localhost:8000
 ```
 
@@ -188,15 +187,11 @@ larger than anything this needs:
 pip install torch --index-url https://download.pytorch.org/whl/cpu
 ```
 
-`make test` runs the suite: 82 cases across 78 test functions, covering the
+`make test` runs the suite: 81 cases across 77 test functions, covering the
 spreadsheet parser, measure selection, the boundary maps, the leak-free
 construction of the design matrix, the metrics and the model registry. 68 of
 them run on a fresh clone with nothing built; the remaining 14 check
 properties of the real artefacts and skip until `make all` has been run.
-
-Building the slides needs a TeX installation with `beamer` and the `metropolis`
-theme. On Debian or Ubuntu, `texlive-latex-extra` and
-`texlive-fonts-extra` are enough.
 
 ## Layout
 
@@ -225,11 +220,10 @@ running the whole pipeline and looking at whether the output seems plausible.
 │   │   ├── neighbourhoods.py segmentation and anomaly detection
 │   │   ├── plotting.py       design tokens and figure plumbing
 │   │   ├── profiling.py      the dataset card, measured from the artefacts
-│   │   └── export.py         JSON for the dashboard, macros for the slides
-│   └── 0*.py                 the nine pipeline stages, in order
+│   │   └── export.py         JSON for the dashboard
+│   └── 0*.py                 the pipeline stages, in order
 ├── tests/                    pytest suite
 ├── docs/                     the dashboard, served by GitHub Pages
-├── slides/                   beamer presentation and its generated facts.tex
 ├── outputs/
 │   ├── figures/              every chart, as PDF and PNG
 │   ├── tables/               performance and per-authority predictions

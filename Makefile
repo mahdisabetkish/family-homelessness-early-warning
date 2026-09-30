@@ -1,8 +1,7 @@
-# Reproduce everything: data, models, figures, slides and the dashboard.
+# Reproduce everything: data, models, figures and the dashboard.
 #
 #   make setup    create the virtualenv and install the package
 #   make all      run the full pipeline end to end
-#   make slides   rebuild the presentation
 #   make serve    preview the dashboard locally
 #   make test     run the test suite
 #   make lint     check style
@@ -18,9 +17,9 @@ PANEL   := data/processed/panel.parquet
 DESIGN  := data/processed/design.parquet
 LSOA    := data/processed/colchester_lsoa.parquet
 
-.PHONY: all setup data panel model figures facts dashboard profile slides serve test lint clean distclean
+.PHONY: all setup data panel model figures dashboard profile serve test lint clean distclean
 
-all: slides dashboard profile
+all: figures dashboard profile
 
 # The package is installed editable, so `import fhew` works from the stage
 # scripts, the tests and a notebook without anything touching sys.path.
@@ -65,10 +64,6 @@ figures: $(FIGURES)/fig_trend.pdf
 $(FIGURES)/fig_trend.pdf: $(SRC)/05_figures.py $(PKG)/plotting.py $(DESIGN) $(LSOA)
 	$(PY) $(SRC)/05_figures.py
 
-facts: slides/facts.tex
-slides/facts.tex: $(SRC)/06_facts.py $(PKG)/export.py $(DESIGN) $(LSOA)
-	$(PY) $(SRC)/06_facts.py
-
 dashboard: docs/data/ranking.json
 docs/data/ranking.json: $(SRC)/07_dashboard_data.py $(PKG)/export.py $(DESIGN) $(LSOA)
 	$(PY) $(SRC)/07_dashboard_data.py
@@ -78,10 +73,6 @@ DATASET.md: $(SRC)/08_data_profile.py $(PKG)/profiling.py $(DESIGN) $(LSOA)
 	$(PY) $(SRC)/08_data_profile.py
 
 # --- outputs ---------------------------------------------------------------
-slides: slides/presentation.pdf
-slides/presentation.pdf: slides/presentation.tex slides/facts.tex $(FIGURES)/fig_trend.pdf
-	cd slides && latexmk -pdf -interaction=nonstopmode -halt-on-error presentation.tex
-
 serve: docs/data/ranking.json
 	@echo "Dashboard at http://localhost:8000  (Ctrl-C to stop)"
 	@cd docs && python3 -m http.server 8000
@@ -96,8 +87,7 @@ lint: | setup
 # --- housekeeping ----------------------------------------------------------
 clean:
 	rm -rf outputs/figures/* outputs/tables/* outputs/models/*
-	rm -f data/processed/*.parquet slides/facts.tex
-	cd slides && latexmk -C >/dev/null 2>&1 || true
+	rm -f data/processed/*.parquet
 
 distclean: clean
 	rm -rf data/raw data/interim .venv src/fhew.egg-info

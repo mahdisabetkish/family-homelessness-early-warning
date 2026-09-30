@@ -57,7 +57,7 @@ def style(ax: plt.Axes, *, ygrid: bool = True) -> None:
 
 
 def save(fig: plt.Figure, name: str) -> None:
-    """Write a figure as PDF for the slides and PNG for the dashboard."""
+    """Write a figure as PDF and PNG for the dashboard."""
     config.FIGURES.mkdir(parents=True, exist_ok=True)
     fig.savefig(config.FIGURES / f"{name}.pdf", bbox_inches="tight", pad_inches=0.02)
     fig.savefig(config.FIGURES / f"{name}.png", dpi=200, bbox_inches="tight", pad_inches=0.02)

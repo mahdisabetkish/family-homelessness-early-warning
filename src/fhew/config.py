@@ -23,7 +23,6 @@ OUTPUTS = ROOT / "outputs"
 FIGURES = OUTPUTS / "figures"
 TABLES = OUTPUTS / "tables"
 MODELS = OUTPUTS / "models"
-SLIDES = ROOT / "slides"
 DOCS = ROOT / "docs"
 DASHBOARD_DATA = DOCS / "data"
 
@@ -64,7 +63,7 @@ CAPACITY = 30                 # authorities a national team could actually work 
 BOOTSTRAP_DRAWS = 2000
 RANDOM_SEED = 0
 
-# The model the dashboard and the slides quote when they quote one.
+# The model the dashboard quotes when they quote one.
 HEADLINE_MODEL = "Gradient boosting (calibrated)"
 
 # --- geography --------------------------------------------------------------

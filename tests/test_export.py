@@ -1,4 +1,4 @@
-"""Serialisation for the dashboard and the slides.
+"""Serialisation for the dashboard.
 
 The page is static and reads JSON directly, so anything the browser cannot
 parse fails silently as a blank panel rather than as an error.
@@ -41,11 +41,3 @@ def test_the_whole_payload_survives_a_json_round_trip():
         {"a": [1.0, float("nan"), 3.5], "b": {"c": np.float64(2.25)}})
     assert json.loads(json.dumps(payload)) == {"a": [1.0, None, 3.5], "b": {"c": 2.25}}
 
-
-def test_latex_macros_are_written_one_per_fact(tmp_path, monkeypatch):
-    monkeypatch.setattr(export.config, "SLIDES", tmp_path)
-    export.write_latex_macros({"NumAuthorities": "338", "EscTestN": "262"})
-
-    written = (tmp_path / "facts.tex").read_text()
-    assert r"\newcommand{\NumAuthorities}{338}" in written
-    assert r"\newcommand{\EscTestN}{262}" in written

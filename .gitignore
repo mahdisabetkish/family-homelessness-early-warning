@@ -4,8 +4,8 @@ data/raw/
 data/interim/
 data/processed/
 
-# Everything under outputs/ is generated. The figures the slides embed are
-# the exception and are committed so the deck builds from a fresh clone.
+# Everything under outputs/ is generated. The figures the README shows are
+# the exception and are committed.
 outputs/models/
 outputs/tables/*.csv
 
@@ -18,17 +18,6 @@ build/
 dist/
 .pytest_cache/
 .ruff_cache/
-
-# LaTeX
-slides/*.aux
-slides/*.fdb_latexmk
-slides/*.fls
-slides/*.log
-slides/*.nav
-slides/*.out
-slides/*.snm
-slides/*.toc
-slides/*.synctex.gz
 
 # OS
 .DS_Store

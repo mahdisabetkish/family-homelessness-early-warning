@@ -1,7 +1,7 @@
-"""Stage 05 - Figures for the presentation.
+"""Stage 05 - Figures for the README and dashboard.
 
-Seven figures, one per claim the deck makes. The house style, the palette and
-the save helper live in `fhew.plotting`, so the dashboard and the slides
+Seven figures, one per claim the analysis makes. The house style, the palette and
+the save helper live in `fhew.plotting`, so the dashboard and the README
 cannot end up on different colours; what stays here is the composition of
 each individual chart, which is the part that is genuinely one-off.
 """

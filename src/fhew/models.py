@@ -2,7 +2,7 @@
 
 Four fitted models spanning the interpretability / capacity trade-off, plus
 two baselines that are not fitted at all. The rationale text lives beside the
-constructors on purpose: the dashboard and the slides both read it from here,
+constructors on purpose: the dashboard reads it from here,
 so a hyperparameter cannot change without the sentence describing it sitting
 one screen away from the change.
 """

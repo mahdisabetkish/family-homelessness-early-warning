@@ -2,7 +2,7 @@
 Stage 07 - Export the JSON the dashboard reads.
 
 The dashboard is a static page: no server, no build step, no database. Every
-number it shows is written here from the same artefacts the slides use, so the
+number it shows is written here from the pipeline artefacts, so the
 page cannot drift from the analysis. Files are kept small enough to load on a
 phone connection.
 """

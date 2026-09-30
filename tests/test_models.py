@@ -1,6 +1,6 @@
 """The model zoo.
 
-These check the parts that the dashboard and the slides read back out, so a
+These check the parts that the dashboard reads back out, so a
 model added or renamed cannot leave a page describing something that is no
 longer being fitted.
 """
