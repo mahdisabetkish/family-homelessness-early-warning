@@ -29,6 +29,18 @@ jobs:
       - uses: actions/configure-pages@v5
         with:
           enablement: true
+      # `enablement` does not change an existing site. If Pages was switched to
+      # "Deploy from a branch", the site serves the repository root instead of
+      # docs/ and the dashboard's data files 404. Put the source back on Actions.
+      - name: Publish from Actions, not from a branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -fsS -X PUT \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -d '{"build_type":"workflow"}'
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
