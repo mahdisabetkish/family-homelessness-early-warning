@@ -15,6 +15,7 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+# Publishes docs/ (the dashboard). Settings -> Pages -> Source must be "GitHub Actions".
 jobs:
   deploy:
     environment:
